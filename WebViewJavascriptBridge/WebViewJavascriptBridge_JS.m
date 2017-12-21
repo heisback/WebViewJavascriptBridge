@@ -94,7 +94,11 @@ NSString * WebViewJavascriptBridge_js() {
 				}
 				responseCallback(message.responseData);
 				delete responseCallbacks[message.responseId];
-			} else {//native调js,getDivNum(),{handlerName:'getDivNum',callbackId:'234'}
+			} else {/**
+				native调js,
+				getDivNum(data,cb){let result = dosoming();cb(result);},
+				eg:{handlerName:'getDivNum',callbackId:'234'}
+				*/
 				if (message.callbackId) {
 					var callbackResponseId = message.callbackId;
 					// 当js方法执行完后的回调，作用是发消息给native，把对应的native callbackID传回去
