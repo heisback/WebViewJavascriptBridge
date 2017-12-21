@@ -87,14 +87,14 @@ NSString * WebViewJavascriptBridge_js() {
 			var messageHandler;
 			var responseCallback;
 
-			if (message.responseId) {
+			if (message.responseId) { //js调native的回调函数，JsBridge.callHandle('getName',{id:111},function(name){console.log(name)})
 				responseCallback = responseCallbacks[message.responseId];
 				if (!responseCallback) {
 					return;
 				}
 				responseCallback(message.responseData);
 				delete responseCallbacks[message.responseId];
-			} else {
+			} else {//native调js,getDivNum(),{handlerName:'getDivNum',callbackId:'234'}
 				if (message.callbackId) {
 					var callbackResponseId = message.callbackId;
 					responseCallback = function(responseData) {
